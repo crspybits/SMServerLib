@@ -1,0 +1,63 @@
+client:
+  name: swift-build
+tools: {}
+targets:
+  "test": ["<PerfectLib.module>","<SMServerLib.module>","<PlistLoaderTests.module>","<SMServerLibPackageTests.test>"]
+  "main": ["<PerfectLib.module>","<SMServerLib.module>"]
+default: "main"
+commands: 
+  "<PerfectLib.module>":
+    tool: swift-compiler
+    executable: "/Applications/Xcode-8.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    module-name: "PerfectLib"
+    module-output-path: "/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.swiftmodule"
+    inputs: []
+    outputs: ["<PerfectLib.module>","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Bytes.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Dir.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/File.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/JSONConvertible.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Log.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/PerfectError.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/PerfectServer.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/SwiftCompatibility.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/SysProcess.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Utilities.swift.o"]
+    import-paths: ["/Users/chris/Desktop/SMServerLib/.build/debug"]
+    temps-path: "/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build"
+    objects: ["/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Bytes.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Dir.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/File.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/JSONConvertible.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Log.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/PerfectError.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/PerfectServer.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/SwiftCompatibility.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/SysProcess.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Utilities.swift.o"]
+    other-args: ["-j8","-D","SWIFT_PACKAGE","-Onone","-g","-enable-testing","-F","/Applications/Xcode-8.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-target","x86_64-apple-macosx10.10","-sdk","/Applications/Xcode-8.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk","-module-cache-path","/Users/chris/Desktop/SMServerLib/.build/debug/ModuleCache"]
+    sources: ["/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/Bytes.swift","/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/Dir.swift","/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/File.swift","/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/JSONConvertible.swift","/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/Log.swift","/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/PerfectError.swift","/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/PerfectServer.swift","/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/SwiftCompatibility.swift","/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/SysProcess.swift","/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/Utilities.swift"]
+    is-library: true
+    enable-whole-module-optimization: false
+    num-threads: "8"
+
+  "<SMServerLib.module>":
+    tool: swift-compiler
+    executable: "/Applications/Xcode-8.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    module-name: "SMServerLib"
+    module-output-path: "/Users/chris/Desktop/SMServerLib/.build/debug/SMServerLib.swiftmodule"
+    inputs: ["<PerfectLib.module>"]
+    outputs: ["<SMServerLib.module>","/Users/chris/Desktop/SMServerLib/.build/debug/SMServerLib.build/PlistDictLoader.swift.o"]
+    import-paths: ["/Users/chris/Desktop/SMServerLib/.build/debug"]
+    temps-path: "/Users/chris/Desktop/SMServerLib/.build/debug/SMServerLib.build"
+    objects: ["/Users/chris/Desktop/SMServerLib/.build/debug/SMServerLib.build/PlistDictLoader.swift.o"]
+    other-args: ["-j8","-D","SWIFT_PACKAGE","-Onone","-g","-enable-testing","-F","/Applications/Xcode-8.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-target","x86_64-apple-macosx10.10","-sdk","/Applications/Xcode-8.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk","-module-cache-path","/Users/chris/Desktop/SMServerLib/.build/debug/ModuleCache"]
+    sources: ["/Users/chris/Desktop/SMServerLib/Sources/PlistDictLoader.swift"]
+    is-library: true
+    enable-whole-module-optimization: false
+    num-threads: "8"
+
+  "<PlistLoaderTests.module>":
+    tool: swift-compiler
+    executable: "/Applications/Xcode-8.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    module-name: "PlistLoaderTests"
+    module-output-path: "/Users/chris/Desktop/SMServerLib/.build/debug/PlistLoaderTests.swiftmodule"
+    inputs: ["<PerfectLib.module>"]
+    outputs: ["<PlistLoaderTests.module>","/Users/chris/Desktop/SMServerLib/.build/debug/PlistLoaderTests.build/TestPlistDictLoader.swift.o"]
+    import-paths: ["/Users/chris/Desktop/SMServerLib/.build/debug"]
+    temps-path: "/Users/chris/Desktop/SMServerLib/.build/debug/PlistLoaderTests.build"
+    objects: ["/Users/chris/Desktop/SMServerLib/.build/debug/PlistLoaderTests.build/TestPlistDictLoader.swift.o"]
+    other-args: ["-j8","-D","SWIFT_PACKAGE","-Onone","-g","-enable-testing","-F","/Applications/Xcode-8.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-target","x86_64-apple-macosx10.10","-sdk","/Applications/Xcode-8.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk","-module-cache-path","/Users/chris/Desktop/SMServerLib/.build/debug/ModuleCache"]
+    sources: ["/Users/chris/Desktop/SMServerLib/Tests/PlistLoaderTests/TestPlistDictLoader.swift"]
+    is-library: true
+    enable-whole-module-optimization: false
+    num-threads: "8"
+
+  "<SMServerLibPackageTests.test>":
+    tool: shell
+    description: "Linking ./.build/debug/SMServerLibPackageTests.xctest/Contents/MacOS/SMServerLibPackageTests"
+    inputs: ["/Users/chris/Desktop/SMServerLib/.build/debug/PlistLoaderTests.build/TestPlistDictLoader.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Bytes.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Dir.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/File.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/JSONConvertible.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Log.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/PerfectError.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/PerfectServer.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/SwiftCompatibility.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/SysProcess.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Utilities.swift.o"]
+    outputs: ["<SMServerLibPackageTests.test>","/Users/chris/Desktop/SMServerLib/.build/debug/SMServerLibPackageTests.xctest/Contents/MacOS/SMServerLibPackageTests"]
+    args: ["/Applications/Xcode-8.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-target","x86_64-apple-macosx10.10","-sdk","/Applications/Xcode-8.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk","-g","-L/Users/chris/Desktop/SMServerLib/.build/debug","-o","/Users/chris/Desktop/SMServerLib/.build/debug/SMServerLibPackageTests.xctest/Contents/MacOS/SMServerLibPackageTests","-F","/Applications/Xcode-8.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-module-name","SMServerLibPackageTests","-Xlinker","-bundle","-F","/Applications/Xcode-8.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","/Users/chris/Desktop/SMServerLib/.build/debug/PlistLoaderTests.build/TestPlistDictLoader.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Bytes.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Dir.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/File.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/JSONConvertible.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Log.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/PerfectError.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/PerfectServer.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/SwiftCompatibility.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/SysProcess.swift.o","/Users/chris/Desktop/SMServerLib/.build/debug/PerfectLib.build/Utilities.swift.o"]
+

@@ -1,0 +1,14 @@
+version: "Apple Swift version 3.0.2 (swiftlang-800.0.63 clang-800.0.42.1)"
+options: "2bfb4dfaf8c956dc48fbc8acf2a7da6c"
+build_time: [536817747, 87517000]
+inputs:
+  "/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/Bytes.swift": [536816946, 0]
+  "/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/Dir.swift": [536816946, 0]
+  "/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/File.swift": [536817020, 0]
+  "/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/JSONConvertible.swift": [536816946, 0]
+  "/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/Log.swift": [536816946, 0]
+  "/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/PerfectError.swift": [536816946, 0]
+  "/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/PerfectServer.swift": [536816946, 0]
+  "/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/SwiftCompatibility.swift": [536816946, 0]
+  "/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/SysProcess.swift": [536816946, 0]
+  "/Users/chris/Desktop/SMServerLib/Packages/PerfectLib-2.0.4/Sources/PerfectLib/Utilities.swift": [536816946, 0]
