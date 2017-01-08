@@ -26,7 +26,7 @@ open class PlistDictLoader {
         try setup(usingPath: bundlePath, andFileName: filename)
     }
     
-    // For tests-- when you don't have access to the bundle.
+    // For tests-- when you don't have access to the bundle. You don't have to give the trailing "/" on the path.
     public init(usingPath path:String, andPlistFileName filename:String) throws {
         try setup(usingPath: path, andFileName: filename)
     }
