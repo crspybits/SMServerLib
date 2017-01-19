@@ -2,18 +2,25 @@ import XCTest
 import SMServerLib
 import PerfectLib
 
-class TestPlistDictLoader: XCTestCase {
-    var plistFileName:String! = "TestPlistDictLoader.plist"
+class TestConfigLoader: XCTestCase {
+    var plistFileName:String! = "TestConfigLoader.plist"
+    var jsonFileName:String! = "TestConfigLoader.json"
     var pathName:String! = "/tmp"
     
     override func setUp() {
         super.setUp()
-        // A bit of a hack, but I can't figure out a way otherwise to access the install directory where the code is running.
+        // This is a bit of a hack, but I can't figure out a way otherwise to access the install directory where the code is running.
         // See also http://stackoverflow.com/questions/41340114/server-side-swift-testing-code-that-uses-bundle
-        // The only downside is that these tests don't test the `init(plistFileNameInBundle filename:String)` constructor that uses the Bundle.
-        // Write the .plist file to a known location. Use only pure Swift methods.
-        
-        let plistPath = (pathName as NSString).appendingPathComponent(plistFileName)
+        // The only downside is that these tests don't test the constructor that uses the Bundle.
+    
+        let jsonPath = NSString(string: pathName).appendingPathComponent(jsonFileName)
+        let json = File(jsonPath)
+        try! json.open(.write)
+        try! json.write(string:"{ \"MyString\": \"Hello World!\", \"MyInteger\": \"100\" }")
+        json.close()
+
+#if os(macOS)
+        let plistPath = NSString(string: pathName).appendingPathComponent(plistFileName)
         let plist = File(plistPath)
         try! plist.open(.write)
         try! plist.write(string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
@@ -29,18 +36,36 @@ class TestPlistDictLoader: XCTestCase {
         )
         
         plist.close()
+#endif
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
     // MARK: constructor tests
     
+    func testThatNonExistentJSONFileThrowsError() {
+        do {
+            let _ = try ConfigLoader(usingPath: "foo", andFileName: "bar", forConfigType: .jsonDictionary)
+            XCTFail()
+        } catch {
+        }
+    }
+    
+    func testThatExistingJSONFileDoesNotThrowError() {
+        do {
+            let _ = try ConfigLoader(usingPath: pathName, andFileName: jsonFileName!, forConfigType: .jsonDictionary)
+        } catch {
+            XCTFail()
+        }
+    }
+
+#if os(macOS)
     func testThatNonExistentPlistFileThrowsError() {
         do {
-            let _ = try PlistDictLoader(usingPath: "foo", andPlistFileName: "bar")
+            let _ = try ConfigLoader(usingPath: "foo", andFileName: "bar", forConfigType: .plistDictionary)
             XCTFail()
         } catch {
         }
@@ -48,22 +73,44 @@ class TestPlistDictLoader: XCTestCase {
     
     func testThatExistingPlistFileDoesNotThrowError() {
         do {
-            let _ = try PlistDictLoader(usingPath: pathName, andPlistFileName: plistFileName!)
+            let _ = try ConfigLoader(usingPath: pathName, andFileName: plistFileName!, forConfigType: .plistDictionary)
         } catch {
             XCTFail()
+        }
+    }
+#endif
+
+    func fileForConfigType(_ configType: ConfigLoader.ConfigType) -> String {
+        switch configType {
+        case .plistDictionary:
+            return plistFileName!
+        case .jsonDictionary:
+            return jsonFileName!
         }
     }
     
     // MARK: Test `get` with integer values
     
-    func testThatNonExistingNonRequiredIntValueIsNotNil() {
-        let plist = try! PlistDictLoader(usingPath: pathName!, andPlistFileName: plistFileName!)
-        XCTAssert(plist.get(varName: "NoIntegerThere", ofType: .intType) == nil)
+    func thatNonExistingNonRequiredIntValueIsNotNil(_ configType:ConfigLoader.ConfigType) {
+        let filename = fileForConfigType(configType)
+        let config = try! ConfigLoader(usingPath: pathName, andFileName: filename, forConfigType: configType)
+        XCTAssert(config.get(varName: "NoIntegerThere", ofType: .intType) == nil)
+    }
+
+#if os(macOS)
+    func testPlistThatNonExistingNonRequiredIntValueIsNotNil() {
+        thatNonExistingNonRequiredIntValueIsNotNil(.plistDictionary)
+    }
+#endif
+
+    func testJSONThatNonExistingNonRequiredIntValueIsNotNil() {
+        thatNonExistingNonRequiredIntValueIsNotNil(.jsonDictionary)
     }
     
-    func testThatExistingNonRequiredIntValueHasRightValue() {
-        let plist = try! PlistDictLoader(usingPath: pathName!, andPlistFileName: plistFileName!)
-        let result = plist.get(varName: "MyInteger", ofType: .intType)
+    func thatExistingNonRequiredIntValueHasRightValue(_ configType:ConfigLoader.ConfigType) {
+        let filename = fileForConfigType(configType)
+        let config = try! ConfigLoader(usingPath: pathName, andFileName: filename, forConfigType: configType)
+        let result = config.get(varName: "MyInteger", ofType: .intType)
         XCTAssert(result != nil)
         
         if case .intValue(let intResult) = result! {
@@ -74,16 +121,38 @@ class TestPlistDictLoader: XCTestCase {
         }
     }
 
+#if os(macOS)
+    func testPlistThatExistingNonRequiredIntValueHasRightValue() {
+        thatExistingNonRequiredIntValueHasRightValue(.plistDictionary)
+    }
+#endif
+
+    func testJSONThatExistingNonRequiredIntValueHasRightValue() {
+        thatExistingNonRequiredIntValueHasRightValue(.jsonDictionary)
+    }
+
     // MARK: Test `get` with string values
     
-    func testThatNonExistingNonRequiredStringValueIsNil() {
-        let plist = try! PlistDictLoader(usingPath: pathName, andPlistFileName: plistFileName!)
+    func thatNonExistingNonRequiredStringValueIsNil(_ configType:ConfigLoader.ConfigType) {
+        let filename = fileForConfigType(configType)
+        let plist = try! ConfigLoader(usingPath: pathName, andFileName: filename, forConfigType: configType)
         XCTAssert(plist.get(varName: "NoStringHere") == nil)
     }
+
+#if os(macOS)
+    func testPlistThatNonExistingNonRequiredStringValueIsNil() {
+        thatNonExistingNonRequiredStringValueIsNil(.plistDictionary)
+    }
+#endif
+
+    func testJSONThatNonExistingNonRequiredStringValueIsNil() {
+        thatNonExistingNonRequiredStringValueIsNil(.jsonDictionary)
+    }
     
-    func testThatExistingNonRequiredStringValueHasRightValue() {
-        let plist = try! PlistDictLoader(usingPath: pathName, andPlistFileName: plistFileName!)
-        let result = plist.get(varName: "MyString")
+    func thatExistingNonRequiredStringValueHasRightValue(_ configType:ConfigLoader.ConfigType) {
+        let filename = fileForConfigType(configType)
+        let config = try! ConfigLoader(usingPath: pathName, andFileName: filename, forConfigType: configType)
+        let result = config.get(varName: "MyString")
         
         XCTAssert(result != nil)
         
@@ -94,22 +163,44 @@ class TestPlistDictLoader: XCTestCase {
             XCTFail()
         }
     }
+
+#if os(macOS)
+    func testPlistThatExistingNonRequiredStringValueHasRightValue() {
+        thatExistingNonRequiredStringValueHasRightValue(.plistDictionary)
+    }
+#endif
+
+    func testJSONThatExistingNonRequiredStringValueHasRightValue() {
+        thatExistingNonRequiredStringValueHasRightValue(.jsonDictionary)
+    }
     
     // MARK: Test `getRequired` with integer values
 
-    func testThatNonExistingRequiredIntValueThrowsError() {
-        let plist = try! PlistDictLoader(usingPath: pathName, andPlistFileName: plistFileName!)
+    func thatNonExistingRequiredIntValueThrowsError(_ configType:ConfigLoader.ConfigType) {
+        let filename = fileForConfigType(configType)
+        let config = try! ConfigLoader(usingPath: pathName, andFileName: filename, forConfigType: configType)
         
         do {
-            let _ = try plist.getRequired(varName: "Foobar", ofType: .intType)
+            let _ = try config.getRequired(varName: "Foobar", ofType: .intType)
             XCTFail()
         } catch {
         }
     }
+
+#if os(macOS)
+    func testPlistThatNonExistingRequiredIntValueThrowsError() {
+        thatNonExistingRequiredIntValueThrowsError(.plistDictionary)
+    }
+#endif
+
+    func testJSONThatNonExistingRequiredIntValueThrowsError() {
+        thatNonExistingRequiredIntValueThrowsError(.jsonDictionary)
+    }
     
-    func testThatExistingRequiredIntValueHasRightValue() {
-        let plist = try! PlistDictLoader(usingPath: pathName, andPlistFileName: plistFileName!)
-        let result = try! plist.getRequired(varName: "MyInteger", ofType: .intType)
+    func thatExistingRequiredIntValueHasRightValue(_ configType:ConfigLoader.ConfigType) {
+        let filename = fileForConfigType(configType)
+        let config = try! ConfigLoader(usingPath: pathName, andFileName: filename, forConfigType: configType)
+        let result = try! config.getRequired(varName: "MyInteger", ofType: .intType)
         
         if case .intValue(let intResult) = result {
             XCTAssert(intResult == 100)
@@ -118,22 +209,44 @@ class TestPlistDictLoader: XCTestCase {
             XCTFail()
         }
     }
+
+#if os(macOS)
+    func testPlistThatExistingRequiredIntValueHasRightValue() {
+        thatExistingRequiredIntValueHasRightValue(.plistDictionary)
+    }
+#endif
+
+    func testJSONThatExistingRequiredIntValueHasRightValue() {
+        thatExistingRequiredIntValueHasRightValue(.jsonDictionary)
+    }
     
     // MARK: Test `getRequired` with string values
     
-    func testThatNonExistingRequiredStringValueThrowsError() {
-        let plist = try! PlistDictLoader(usingPath: pathName, andPlistFileName: plistFileName!)
+    func thatNonExistingRequiredStringValueThrowsError(_ configType:ConfigLoader.ConfigType) {
+        let filename = fileForConfigType(configType)
+        let config = try! ConfigLoader(usingPath: pathName, andFileName: filename, forConfigType: configType)
         
         do {
-            let _ = try plist.getRequired(varName: "Foobar")
+            let _ = try config.getRequired(varName: "Foobar")
             XCTFail()
         } catch {
         }
     }
 
-    func testThatExistingRequiredStringValueHasRightValue() {
-        let plist = try! PlistDictLoader(usingPath: pathName, andPlistFileName: plistFileName!)
-        let result = try! plist.getRequired(varName: "MyString")
+#if os(macOS)
+    func testPlistThatNonExistingRequiredStringValueThrowsError() {
+        thatNonExistingRequiredStringValueThrowsError(.plistDictionary)
+    }
+#endif
+
+    func testJSONThatNonExistingRequiredStringValueThrowsError() {
+        thatNonExistingRequiredStringValueThrowsError(.jsonDictionary)
+    }
+
+    func thatExistingRequiredStringValueHasRightValue(_ configType:ConfigLoader.ConfigType) {
+        let filename = fileForConfigType(configType)
+        let config = try! ConfigLoader(usingPath: pathName, andFileName: filename, forConfigType: configType)
+        let result = try! config.getRequired(varName: "MyString")
         
         if case .stringValue(let strResult) = result {
             XCTAssert(strResult == "Hello World!")
@@ -141,5 +254,15 @@ class TestPlistDictLoader: XCTestCase {
         else {
             XCTFail()
         }
+    }
+
+#if os(macOS)
+    func testPlistThatExistingRequiredStringValueHasRightValue() {
+        thatExistingRequiredStringValueHasRightValue(.plistDictionary)
+    }
+#endif
+
+    func testJSONThatExistingRequiredStringValueHasRightValue() {
+        thatExistingRequiredStringValueHasRightValue(.jsonDictionary)
     }
 }

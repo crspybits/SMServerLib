@@ -5,6 +5,8 @@ import PackageDescription
 let package = Package(
     name: "SMServerLib",
     dependencies: [
+        // sudo apt-get install openssl libssl-dev uuid-dev
+        //      is necessary on Linux to get this working
         .Package(url: "https://github.com/PerfectlySoft/Perfect.git", majorVersion: 2, minor: 0)
     ]
 )

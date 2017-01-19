@@ -17,21 +17,21 @@
 		OBJ_40 /* SwiftCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* SwiftCompatibility.swift */; };
 		OBJ_41 /* SysProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* SysProcess.swift */; };
 		OBJ_42 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Utilities.swift */; };
-		OBJ_49 /* PlistDictLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* PlistDictLoader.swift */; };
+		OBJ_49 /* ConfigLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* ConfigLoader.swift */; };
 		OBJ_51 /* PerfectLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* PerfectLib.framework */; };
 		OBJ_58 /* TestPlistDictLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* TestPlistDictLoader.swift */; };
 		OBJ_60 /* PerfectLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* PerfectLib.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		83346EB21E16E9E5002E1697 /* PBXContainerItemProxy */ = {
+		83343C891E3098B000D6F2C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_28;
 			remoteInfo = PerfectLib;
 		};
-		83346EB31E16E9E5002E1697 /* PBXContainerItemProxy */ = {
+		83343C8A1E3098B000D6F2C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
@@ -50,7 +50,7 @@
 		OBJ_16 /* SwiftCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCompatibility.swift; sourceTree = "<group>"; };
 		OBJ_17 /* SysProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SysProcess.swift; sourceTree = "<group>"; };
 		OBJ_18 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		OBJ_20 /* PlistDictLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistDictLoader.swift; sourceTree = "<group>"; };
+		OBJ_20 /* ConfigLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigLoader.swift; sourceTree = "<group>"; };
 		OBJ_23 /* TestPlistDictLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPlistDictLoader.swift; sourceTree = "<group>"; };
 		OBJ_25 /* PerfectLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PerfectLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_26 /* SMServerLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMServerLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,7 +89,7 @@
 		OBJ_19 /* SMServerLib */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_20 /* PlistDictLoader.swift */,
+				OBJ_20 /* ConfigLoader.swift */,
 			);
 			name = SMServerLib;
 			path = Sources;
@@ -157,7 +157,7 @@
 				OBJ_18 /* Utilities.swift */,
 			);
 			name = PerfectLib;
-			path = "Packages/PerfectLib-2.0.4/Sources/PerfectLib";
+			path = "Packages/PerfectLib-2.0.6/Sources/PerfectLib";
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
@@ -262,7 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_49 /* PlistDictLoader.swift in Sources */,
+				OBJ_49 /* ConfigLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,12 +280,12 @@
 		OBJ_52 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_28 /* PerfectLib */;
-			targetProxy = 83346EB21E16E9E5002E1697 /* PBXContainerItemProxy */;
+			targetProxy = 83343C891E3098B000D6F2C2 /* PBXContainerItemProxy */;
 		};
 		OBJ_61 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_28 /* PerfectLib */;
-			targetProxy = 83346EB31E16E9E5002E1697 /* PBXContainerItemProxy */;
+			targetProxy = 83343C8A1E3098B000D6F2C2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
