@@ -1,3 +1,16 @@
 # SMServerLib
 
-My intent is to use this both in iOS apps and server-side apps. I need to resolve the PerfectLib dependency-- it is only needed for tests, and ought not be dragged in for deployed package installation.
+My intent is to use this both in iOS apps and server-side apps. 
+
+Installed using the swift package manager:
+
+let package = Package(
+    name: "MyProject",
+    dependencies: [
+        .Package(url: "https://github.com/crspybits/SMServerLib.git", majorVersion: 0),
+        ...
+    ]
+    ...
+)
+
+
