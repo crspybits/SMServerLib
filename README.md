@@ -4,6 +4,7 @@ My intent is to use this both in iOS apps and server-side apps.
 
 Installed using the swift package manager:
 
+```
 let package = Package(
     name: "MyProject",
     dependencies: [
@@ -12,5 +13,5 @@ let package = Package(
     ]
     ...
 )
-
+```
 
