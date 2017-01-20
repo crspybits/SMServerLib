@@ -1,4 +1,5 @@
 git add -A && git commit -m "Release 0.0.3: Added tag"
-git tag ‘0.0.3’
+# DO NOT (!!) put quotes around the version number!!!
+git tag 0.0.3
 git push --tags
 
