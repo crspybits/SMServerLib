@@ -4,5 +4,6 @@ git tag 0.0.3
 git push --tags
 
 # If you mess up, remove a tag using:
+# note that the quotes around the tag are for the example-- normally you don't put these on.
 git tag -d ‘0.0.3’
 git push origin :refs/tags/‘0.0.3’
