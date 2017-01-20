@@ -3,3 +3,6 @@ git add -A && git commit -m "Release 0.0.3: Added tag"
 git tag 0.0.3
 git push --tags
 
+# If you mess up, remove a tag using:
+git tag -d ‘0.0.3’
+git push origin :refs/tags/‘0.0.3’
