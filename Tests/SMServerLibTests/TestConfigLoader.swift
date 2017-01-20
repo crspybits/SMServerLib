@@ -1,6 +1,7 @@
 import XCTest
-import SMServerLib
+@testable import SMServerLib
 import PerfectLib
+import Foundation
 
 class TestConfigLoader: XCTestCase {
     var plistFileName:String! = "TestConfigLoader.plist"
@@ -264,5 +265,22 @@ class TestConfigLoader: XCTestCase {
 
     func testJSONThatExistingRequiredStringValueHasRightValue() {
         thatExistingRequiredStringValueHasRightValue(.jsonDictionary)
+    }
+}
+
+extension TestConfigLoader {
+    static var allTests : [(String, (TestConfigLoader) -> () throws -> Void)] {
+        return [
+            ("testThatNonExistentJSONFileThrowsError",testThatNonExistentJSONFileThrowsError),
+            ("testThatExistingJSONFileDoesNotThrowError",testThatExistingJSONFileDoesNotThrowError),
+            ("testJSONThatNonExistingNonRequiredIntValueIsNotNil",testJSONThatNonExistingNonRequiredIntValueIsNotNil),
+            ("testJSONThatExistingNonRequiredIntValueHasRightValue",testJSONThatExistingNonRequiredIntValueHasRightValue),
+            ("testJSONThatNonExistingNonRequiredStringValueIsNil", testJSONThatNonExistingNonRequiredStringValueIsNil),
+            ("testJSONThatExistingNonRequiredStringValueHasRightValue", testJSONThatExistingNonRequiredStringValueHasRightValue),
+            ("testJSONThatNonExistingRequiredIntValueThrowsError", testJSONThatNonExistingRequiredIntValueThrowsError),
+            ("testJSONThatExistingRequiredIntValueHasRightValue", testJSONThatExistingRequiredIntValueHasRightValue),
+            ("testJSONThatNonExistingRequiredStringValueThrowsError", testJSONThatNonExistingRequiredStringValueThrowsError),
+            ("testJSONThatExistingRequiredStringValueHasRightValue", testJSONThatExistingRequiredStringValueHasRightValue)
+        ]
     }
 }

@@ -57,6 +57,7 @@ open class ConfigLoader {
             configDict = NSDictionary(contentsOfFile: configFilePath) as! Dictionary<String, Any>!
 #endif
         case .jsonDictionary:
+            // This segment of code from https://github.com/iamjono/JSONConfig/blob/master/Sources/jsonConfig.swift
             let file = File(configFilePath)
             do {
                 try file.open(.read, permissions: .readUser)

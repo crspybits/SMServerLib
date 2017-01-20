@@ -19,24 +19,32 @@
 		OBJ_42 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* Utilities.swift */; };
 		OBJ_49 /* ConfigLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* ConfigLoader.swift */; };
 		OBJ_51 /* PerfectLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* PerfectLib.framework */; };
-		OBJ_58 /* TestPlistDictLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* TestPlistDictLoader.swift */; };
+		OBJ_58 /* TestConfigLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* TestConfigLoader.swift */; };
 		OBJ_60 /* PerfectLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* PerfectLib.framework */; };
+		OBJ_61 /* SMServerLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* SMServerLib.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		83343C891E3098B000D6F2C2 /* PBXContainerItemProxy */ = {
+		83F485521E319E3800D03499 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_28;
 			remoteInfo = PerfectLib;
 		};
-		83343C8A1E3098B000D6F2C2 /* PBXContainerItemProxy */ = {
+		83F485531E319E3800D03499 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_28;
 			remoteInfo = PerfectLib;
+		};
+		83F485541E319E3800D03499 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = OBJ_44;
+			remoteInfo = SMServerLib;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -51,10 +59,10 @@
 		OBJ_17 /* SysProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SysProcess.swift; sourceTree = "<group>"; };
 		OBJ_18 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		OBJ_20 /* ConfigLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigLoader.swift; sourceTree = "<group>"; };
-		OBJ_23 /* TestPlistDictLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPlistDictLoader.swift; sourceTree = "<group>"; };
+		OBJ_23 /* TestConfigLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConfigLoader.swift; sourceTree = "<group>"; };
 		OBJ_25 /* PerfectLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PerfectLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_26 /* SMServerLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMServerLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_27 /* PlistLoaderTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = PlistLoaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_26 /* SMServerLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SMServerLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_27 /* SMServerLibTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SMServerLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* Bytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bytes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,6 +88,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_60 /* PerfectLib.framework in Frameworks */,
+				OBJ_61 /* SMServerLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,18 +107,18 @@
 		OBJ_21 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_22 /* PlistLoaderTests */,
+				OBJ_22 /* SMServerLibTests */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		OBJ_22 /* PlistLoaderTests */ = {
+		OBJ_22 /* SMServerLibTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_23 /* TestPlistDictLoader.swift */,
+				OBJ_23 /* TestConfigLoader.swift */,
 			);
-			name = PlistLoaderTests;
-			path = Tests/PlistLoaderTests;
+			name = SMServerLibTests;
+			path = Tests/SMServerLibTests;
 			sourceTree = SOURCE_ROOT;
 		};
 		OBJ_24 /* Products */ = {
@@ -117,7 +126,7 @@
 			children = (
 				OBJ_25 /* PerfectLib.framework */,
 				OBJ_26 /* SMServerLib.framework */,
-				OBJ_27 /* PlistLoaderTests.xctest */,
+				OBJ_27 /* SMServerLibTests.xctest */,
 			);
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -196,9 +205,9 @@
 			productReference = OBJ_26 /* SMServerLib.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		OBJ_53 /* PlistLoaderTests */ = {
+		OBJ_53 /* SMServerLibTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_54 /* Build configuration list for PBXNativeTarget "PlistLoaderTests" */;
+			buildConfigurationList = OBJ_54 /* Build configuration list for PBXNativeTarget "SMServerLibTests" */;
 			buildPhases = (
 				OBJ_57 /* Sources */,
 				OBJ_59 /* Frameworks */,
@@ -206,11 +215,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_61 /* PBXTargetDependency */,
+				OBJ_62 /* PBXTargetDependency */,
+				OBJ_63 /* PBXTargetDependency */,
 			);
-			name = PlistLoaderTests;
-			productName = PlistLoaderTests;
-			productReference = OBJ_27 /* PlistLoaderTests.xctest */;
+			name = SMServerLibTests;
+			productName = SMServerLibTests;
+			productReference = OBJ_27 /* SMServerLibTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -235,7 +245,7 @@
 			targets = (
 				OBJ_28 /* PerfectLib */,
 				OBJ_44 /* SMServerLib */,
-				OBJ_53 /* PlistLoaderTests */,
+				OBJ_53 /* SMServerLibTests */,
 			);
 		};
 /* End PBXProject section */
@@ -270,7 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_58 /* TestPlistDictLoader.swift in Sources */,
+				OBJ_58 /* TestConfigLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,12 +290,17 @@
 		OBJ_52 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_28 /* PerfectLib */;
-			targetProxy = 83343C891E3098B000D6F2C2 /* PBXContainerItemProxy */;
+			targetProxy = 83F485521E319E3800D03499 /* PBXContainerItemProxy */;
 		};
-		OBJ_61 /* PBXTargetDependency */ = {
+		OBJ_62 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_28 /* PerfectLib */;
-			targetProxy = 83343C8A1E3098B000D6F2C2 /* PBXContainerItemProxy */;
+			targetProxy = 83F485531E319E3800D03499 /* PBXContainerItemProxy */;
+		};
+		OBJ_63 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = OBJ_44 /* SMServerLib */;
+			targetProxy = 83F485541E319E3800D03499 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -421,11 +436,11 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = SMServerLib.xcodeproj/PlistLoaderTests_Info.plist;
+				INFOPLIST_FILE = SMServerLib.xcodeproj/SMServerLibTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				TARGET_NAME = PlistLoaderTests;
+				TARGET_NAME = SMServerLibTests;
 			};
 			name = Debug;
 		};
@@ -438,11 +453,11 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = SMServerLib.xcodeproj/PlistLoaderTests_Info.plist;
+				INFOPLIST_FILE = SMServerLib.xcodeproj/SMServerLibTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				TARGET_NAME = PlistLoaderTests;
+				TARGET_NAME = SMServerLibTests;
 			};
 			name = Release;
 		};
@@ -476,7 +491,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		OBJ_54 /* Build configuration list for PBXNativeTarget "PlistLoaderTests" */ = {
+		OBJ_54 /* Build configuration list for PBXNativeTarget "SMServerLibTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				OBJ_55 /* Debug */,

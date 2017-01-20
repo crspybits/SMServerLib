@@ -47,8 +47,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "OBJ_53"
-               BuildableName = "PlistLoaderTests.xctest"
-               BlueprintName = "PlistLoaderTests"
+               BuildableName = "SMServerLibTests.xctest"
+               BlueprintName = "SMServerLibTests"
                ReferencedContainer = "container:SMServerLib.xcodeproj">
             </BuildableReference>
          </TestableReference>
