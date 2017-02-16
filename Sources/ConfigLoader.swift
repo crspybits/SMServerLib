@@ -120,7 +120,7 @@ open class ConfigLoader {
     }
     
     open func getInt(varName key:String) throws -> Int {
-        if case .intValue(let intValue) = try self.getRequired(varName: key) {
+        if case .intValue(let intValue) = try self.getRequired(varName: key, ofType: .intType) {
             return intValue
         }
         throw ConfigLoaderError.requiredIntVarNotFound(key: key)

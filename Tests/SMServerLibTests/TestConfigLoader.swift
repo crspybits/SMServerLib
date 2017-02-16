@@ -266,6 +266,46 @@ class TestConfigLoader: XCTestCase {
     func testJSONThatExistingRequiredStringValueHasRightValue() {
         thatExistingRequiredStringValueHasRightValue(.jsonDictionary)
     }
+    
+    // MARK: Test `getInt` with integer values
+
+    func thatNonExistingGetIntValueThrowsError(_ configType:ConfigLoader.ConfigType) {
+        let filename = fileForConfigType(configType)
+        let config = try! ConfigLoader(usingPath: pathName, andFileName: filename, forConfigType: configType)
+        
+        do {
+            let _ = try config.getInt(varName: "Foobar")
+            XCTFail()
+        } catch {
+        }
+    }
+
+#if os(macOS)
+    func testPlistThatNonExistingGetIntIntValueThrowsError() {
+        thatNonExistingGetIntValueThrowsError(.plistDictionary)
+    }
+#endif
+
+    func testJSONThatNonExistingGetIntValueThrowsError() {
+        thatNonExistingGetIntValueThrowsError(.jsonDictionary)
+    }
+
+    func thatExistingGetIntValueHasRightValue(_ configType:ConfigLoader.ConfigType) {
+        let filename = fileForConfigType(configType)
+        let config = try! ConfigLoader(usingPath: pathName, andFileName: filename, forConfigType: configType)
+        let result = try! config.getInt(varName: "MyInteger")
+        XCTAssert(result == 100)
+    }
+
+#if os(macOS)
+    func testPlistThatExistingGetIntValueHasRightValue() {
+        thatExistingGetIntValueHasRightValue(.plistDictionary)
+    }
+#endif
+
+    func testJSONThatExistingGetIntValueHasRightValue() {
+        thatExistingGetIntValueHasRightValue(.jsonDictionary)
+    }
 }
 
 extension TestConfigLoader {
