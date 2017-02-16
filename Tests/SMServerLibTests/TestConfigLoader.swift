@@ -320,7 +320,11 @@ extension TestConfigLoader {
             ("testJSONThatNonExistingRequiredIntValueThrowsError", testJSONThatNonExistingRequiredIntValueThrowsError),
             ("testJSONThatExistingRequiredIntValueHasRightValue", testJSONThatExistingRequiredIntValueHasRightValue),
             ("testJSONThatNonExistingRequiredStringValueThrowsError", testJSONThatNonExistingRequiredStringValueThrowsError),
-            ("testJSONThatExistingRequiredStringValueHasRightValue", testJSONThatExistingRequiredStringValueHasRightValue)
+            ("testJSONThatExistingRequiredStringValueHasRightValue", testJSONThatExistingRequiredStringValueHasRightValue),
+            ("testJSONThatNonExistingGetIntValueThrowsError",
+                testJSONThatNonExistingGetIntValueThrowsError),
+            ("testJSONThatExistingGetIntValueHasRightValue",
+                testJSONThatExistingGetIntValueHasRightValue)
         ]
     }
 }
