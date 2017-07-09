@@ -17,7 +17,7 @@ class TestConfigLoader: XCTestCase {
         let jsonPath = NSString(string: pathName).appendingPathComponent(jsonFileName)
         let json = File(jsonPath)
         try! json.open(.write)
-        try! json.write(string:"{ \"MyString\": \"Hello World!\", \"MyInteger\": \"100\" }")
+        try! json.write(string:"{ \"MyString\": \"Hello World!\", \"MyInteger\": \"100\", \"MyBool\": \"false\" }")
         json.close()
 
 #if os(macOS)
@@ -32,6 +32,8 @@ class TestConfigLoader: XCTestCase {
                 "<string>Hello World!</string>\n" +
                 "<key>MyInteger</key>\n" +
                 "<integer>100</integer>\n" +
+                "<key>MyBool</key>\n" +
+                "<false/>\n" +
             "</dict>\n" +
             "</plist>\n"
         )
@@ -187,6 +189,19 @@ class TestConfigLoader: XCTestCase {
         } catch {
         }
     }
+    
+    // MARK: Test `getRequired` with boolean values
+    
+    func thatNonExistingRequiredBoolValueThrowsError(_ configType:ConfigLoader.ConfigType) {
+        let filename = fileForConfigType(configType)
+        let config = try! ConfigLoader(usingPath: pathName, andFileName: filename, forConfigType: configType)
+            
+        do {
+            let _ = try config.getRequired(varName: "Foobar", ofType: .boolType)
+            XCTFail()
+        } catch {
+        }
+    }
 
 #if os(macOS)
     func testPlistThatNonExistingRequiredIntValueThrowsError() {
@@ -219,6 +234,39 @@ class TestConfigLoader: XCTestCase {
 
     func testJSONThatExistingRequiredIntValueHasRightValue() {
         thatExistingRequiredIntValueHasRightValue(.jsonDictionary)
+    }
+    
+#if os(macOS)
+    func testPlistThatNonExistingRequiredBoolValueThrowsError() {
+        thatNonExistingRequiredBoolValueThrowsError(.plistDictionary)
+    }
+#endif
+    
+    func testJSONThatNonExistingRequiredBoolValueThrowsError() {
+        thatNonExistingRequiredBoolValueThrowsError(.jsonDictionary)
+    }
+    
+    func thatExistingRequiredBoolValueHasRightValue(_ configType:ConfigLoader.ConfigType) {
+        let filename = fileForConfigType(configType)
+        let config = try! ConfigLoader(usingPath: pathName, andFileName: filename, forConfigType: configType)
+        let result = try! config.getRequired(varName: "MyBool", ofType: .boolType)
+        
+        if case .boolValue(let boolResult) = result {
+            XCTAssert(boolResult == false)
+        }
+        else {
+            XCTFail()
+        }
+    }
+    
+#if os(macOS)
+    func testPlistThatExistingRequiredBoolValueHasRightValue() {
+        thatExistingRequiredBoolValueHasRightValue(.plistDictionary)
+    }
+#endif
+    
+    func testJSONThatExistingRequiredBoolValueHasRightValue() {
+        thatExistingRequiredBoolValueHasRightValue(.jsonDictionary)
     }
     
     // MARK: Test `getRequired` with string values
@@ -279,6 +327,17 @@ class TestConfigLoader: XCTestCase {
         } catch {
         }
     }
+    
+    func thatNonExistingGetBoolValueThrowsError(_ configType:ConfigLoader.ConfigType) {
+        let filename = fileForConfigType(configType)
+        let config = try! ConfigLoader(usingPath: pathName, andFileName: filename, forConfigType: configType)
+        
+        do {
+            let _ = try config.getBool(varName: "Foobar")
+            XCTFail()
+        } catch {
+        }
+    }
 
 #if os(macOS)
     func testPlistThatNonExistingGetIntIntValueThrowsError() {
@@ -306,6 +365,33 @@ class TestConfigLoader: XCTestCase {
     func testJSONThatExistingGetIntValueHasRightValue() {
         thatExistingGetIntValueHasRightValue(.jsonDictionary)
     }
+    
+#if os(macOS)
+    func testPlistThatNonExistingGetBoolValueThrowsError() {
+        thatNonExistingGetBoolValueThrowsError(.plistDictionary)
+    }
+#endif
+    
+    func testJSONThatNonExistingGetBoolValueThrowsError() {
+        thatNonExistingGetBoolValueThrowsError(.jsonDictionary)
+    }
+    
+    func thatExistingGetBoolValueHasRightValue(_ configType:ConfigLoader.ConfigType) {
+        let filename = fileForConfigType(configType)
+        let config = try! ConfigLoader(usingPath: pathName, andFileName: filename, forConfigType: configType)
+        let result = try! config.getBool(varName: "MyBool")
+        XCTAssert(result == false)
+    }
+    
+#if os(macOS)
+    func testPlistThatExistingGetBoolValueHasRightValue() {
+        thatExistingGetBoolValueHasRightValue(.plistDictionary)
+    }
+#endif
+    
+    func testJSONThatExistingGetBoolValueHasRightValue() {
+        thatExistingGetBoolValueHasRightValue(.jsonDictionary)
+    }
 }
 
 extension TestConfigLoader {
@@ -324,7 +410,15 @@ extension TestConfigLoader {
             ("testJSONThatNonExistingGetIntValueThrowsError",
                 testJSONThatNonExistingGetIntValueThrowsError),
             ("testJSONThatExistingGetIntValueHasRightValue",
-                testJSONThatExistingGetIntValueHasRightValue)
+                testJSONThatExistingGetIntValueHasRightValue),
+            ("testJSONThatNonExistingRequiredBoolValueThrowsError",
+             testJSONThatNonExistingRequiredBoolValueThrowsError),
+            ("testJSONThatExistingRequiredBoolValueHasRightValue",
+             testJSONThatExistingRequiredBoolValueHasRightValue),
+            ("testJSONThatNonExistingGetBoolValueThrowsError",
+             testJSONThatNonExistingGetBoolValueThrowsError),
+            ("testJSONThatExistingGetBoolValueHasRightValue",
+             testJSONThatExistingGetBoolValueHasRightValue)
         ]
     }
 }

@@ -16,6 +16,7 @@ open class ConfigLoader {
     case requiredVarNotFound(key:String)
     case requiredStringVarNotFound(key:String)
     case requiredIntVarNotFound(key:String)
+    case requiredBoolVarNotFound(key:String)
     case plistNotAvailableOnLinux
     case failedLoadingJSONFile(name:String)
     }
@@ -77,11 +78,13 @@ open class ConfigLoader {
     public enum DictValue {
     case intValue(Int)
     case stringValue(String)
+    case boolValue(Bool)
     }
     
     public enum DictType {
     case intType
     case stringType
+    case boolType
     }
     
     open func get(varName:String, ofType type:DictType = .stringType) -> DictValue? {
@@ -97,6 +100,20 @@ open class ConfigLoader {
             case .plistDictionary:
                 if let intVal = configDict![varName] as? Int {
                     return .intValue(intVal)
+                }
+            }
+            
+        case .boolType:
+            switch configType! {
+            case .jsonDictionary:
+                // All values should be strings.
+                if let str = configDict![varName] as? String, let bool = Bool(str) {
+                    return .boolValue(bool)
+                }
+                
+            case .plistDictionary:
+                if let boolVal = configDict![varName] as? Bool {
+                    return .boolValue(boolVal)
                 }
             }
             
@@ -131,5 +148,12 @@ open class ConfigLoader {
             return strValue
         }
         throw ConfigLoaderError.requiredStringVarNotFound(key: key)
+    }
+    
+    open func getBool(varName key:String) throws -> Bool {
+        if case .boolValue(let boolValue) = try self.getRequired(varName: key, ofType: .boolType) {
+            return boolValue
+        }
+        throw ConfigLoaderError.requiredBoolVarNotFound(key: key)
     }
 }
