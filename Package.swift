@@ -7,6 +7,6 @@ let package = Package(
     dependencies: [
         // sudo apt-get install openssl libssl-dev uuid-dev
         //      is necessary on Linux to get this working
-        .Package(url: "https://github.com/PerfectlySoft/Perfect.git", majorVersion: 2, minor: 0)
+        .Package(url: "https://github.com/PerfectlySoft/Perfect.git", majorVersion: 3, minor: 1)
     ]
 )
