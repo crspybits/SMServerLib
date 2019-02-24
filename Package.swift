@@ -1,12 +1,29 @@
-import PackageDescription
+// swift-tools-version:4.1
+// Adapted from https://github.com/IBM-Swift/Kitura-CredentialsGoogle
 
-// Trying to figure out how to make this dependency test-only. See http://stackoverflow.com/questions/41401753/test-only-dependencies-when-using-the-swift-package-manger
+import PackageDescription
 
 let package = Package(
     name: "SMServerLib",
-    dependencies: [
+    products: [
         // sudo apt-get install openssl libssl-dev uuid-dev
         //      is necessary on Linux to get this working
-        .Package(url: "https://github.com/PerfectlySoft/Perfect.git", majorVersion: 3, minor: 1)
+        .library(
+            name: "SMServerLib",
+            targets: ["SMServerLib"]
+        )
+    ],
+    dependencies: [
+            .package(url: "https://github.com/PerfectlySoft/Perfect.git", .upToNextMajor(from: "3.1.0"))
+        ],
+    targets: [
+        .target(
+            name: "SMServerLib",
+            dependencies: ["PerfectLib"]
+        ),
+        .testTarget(
+            name: "SMServerLibTests",
+            dependencies: ["PerfectLib", "SMServerLib"]
+        )
     ]
 )

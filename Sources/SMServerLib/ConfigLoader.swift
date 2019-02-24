@@ -55,7 +55,7 @@ open class ConfigLoader {
 #if os(Linux)
             throw ConfigLoaderError.plistNotAvailableOnLinux
 #else
-            configDict = NSDictionary(contentsOfFile: configFilePath) as! Dictionary<String, Any>!
+            configDict = NSDictionary(contentsOfFile: configFilePath) as! Dictionary<String, Any>?
 #endif
         case .jsonDictionary:
             // This segment of code from https://github.com/iamjono/JSONConfig/blob/master/Sources/jsonConfig.swift
@@ -64,7 +64,7 @@ open class ConfigLoader {
                 try file.open(.read, permissions: .readUser)
                 defer { file.close() }
                 let txt = try file.readString()
-                configDict = try txt.jsonDecode() as! Dictionary<String, Any>
+                configDict = try txt.jsonDecode() as? Dictionary<String, Any>
             } catch {
                 throw ConfigLoaderError.failedLoadingJSONFile(name: configFilePath)
             }
