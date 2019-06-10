@@ -1,4 +1,4 @@
-// swift-tools-version:4.1
+// swift-tools-version:5.0
 // Adapted from https://github.com/IBM-Swift/Kitura-CredentialsGoogle
 
 import PackageDescription
@@ -14,7 +14,7 @@ let package = Package(
         )
     ],
     dependencies: [
-            .package(url: "https://github.com/PerfectlySoft/Perfect.git", .upToNextMajor(from: "3.1.0"))
+            .package(url: "https://github.com/PerfectlySoft/Perfect.git", .upToNextMajor(from: "3.1.4"))
         ],
     targets: [
         .target(
