@@ -9,6 +9,15 @@
           "revision": "5a08c2a596df23a3ae30b6ac9cb509a38384166c",
           "version": "3.1.4"
         }
+      },
+      {
+        "package": "LinuxBridge",
+        "repositoryURL": "https://github.com/PerfectlySoft/Perfect-LinuxBridge.git",
+        "state": {
+          "branch": null,
+          "revision": "d6e64c48e6b06b6f1ab7ab9338280447baa8ca5c",
+          "version": "3.1.0"
+        }
       }
     ]
   },

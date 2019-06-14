@@ -17,7 +17,7 @@ class TestConfigLoader: XCTestCase {
         let jsonPath = NSString(string: pathName).appendingPathComponent(jsonFileName)
         let json = File(jsonPath)
         try! json.open(.write)
-        try! json.write(string:"{ \"MyString\": \"Hello World!\", \"MyInteger\": \"100\", \"MyBool\": \"false\" }")
+        try! json.write(string:"{ \"MyString\": \"Hello World!\", \"MyInteger\": \"100\", \"MyBool\": \"false\", \"MyBool2\": \"true\" }")
         json.close()
 
 #if os(macOS)
@@ -34,6 +34,8 @@ class TestConfigLoader: XCTestCase {
                 "<integer>100</integer>\n" +
                 "<key>MyBool</key>\n" +
                 "<false/>\n" +
+                "<key>MyBool2</key>\n" +
+                "<true/>\n" +
             "</dict>\n" +
             "</plist>\n"
         )
@@ -253,6 +255,15 @@ class TestConfigLoader: XCTestCase {
         
         if case .boolValue(let boolResult) = result {
             XCTAssert(boolResult == false)
+        }
+        else {
+            XCTFail()
+        }
+        
+        let result2 = try! config.getRequired(varName: "MyBool2", ofType: .boolType)
+        
+        if case .boolValue(let boolResult) = result2 {
+            XCTAssert(boolResult == true)
         }
         else {
             XCTFail()
